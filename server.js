@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
+import authRoutes from './routes/authRoute.js';
+
 //configure env
 // env file created on root directory so no need to pass the path object into config
 dotenv.config();
@@ -14,6 +16,9 @@ const app = express();
 //middelwares
 app.use(express.json());
 app.use(morgan('dev'));
+
+//routes
+app.use('/api/v1/auth',authRoutes);
 //rest api
 app.get('/', (req, res) => {
     res.send("<h1>Welcome to Ecommerce app</h1>")
